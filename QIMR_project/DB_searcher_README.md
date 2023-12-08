@@ -1,5 +1,3 @@
-DATABASE searcher
-
 ## DATABASE searcher
 
 This document describes the database searching pipeline used in the MA dbexplorer application.
