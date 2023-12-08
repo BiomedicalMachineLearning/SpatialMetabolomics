@@ -35,9 +35,9 @@ The resulting output is a clean and normalized database suitable for searching.
 
 The searching pipeline uses the cleaned database to search for matches based on the following user-specified parameters:
 
-* **Adducts:** The types of adducts to be considered.
-* **Elements:** The elements to be considered.
-* **ppm range:** The tolerance for matching m/z values.
+* **Adducts:** The types of adducts to be considered. Up to 47 common adducts can be calculated over positive and negative mode.
+* **Elements:** The elements to be considered. Filters out elements that are deemed not natural, or only allows elements set by the user. i.e., natural elements are "H", "C", "N", "O", "S", "Cl", "Br", "F", "Na", "P", "I".
+* **ppm range:** The tolerance for matching m/z values. This gives better matching than just doing a blanket absolute mass error (Da). As ms will work in ppm.   
 
 The pipeline performs the following steps:
 
@@ -52,7 +52,9 @@ The pipeline returns a list of matches, along with their corresponding informati
 The pipeline is designed to be flexible and allow users to incorporate their own custom databases. To do this, users should provide their database in SDF format. The pipeline will automatically handle the cleaning and normalization process.
 
 An additional script called DBsearcher_pipeline_custom.R has also been included. This takes in a custom db (See structure in inst/custom_db_search/Query_Custom.csv) and matches it to a list. It will match and return m/z and retention time values and the error of the matches. The ranges of both of these are set by the user. 
-Note this does not consider adducts, the input data base values are also in m/z and not neutral mass as is the case in the pipeline. 
+Note this does not consider adducts, the input database values are also in m/z and not neutral mass as is the case in the pipeline. 
+
+The reason for adding this additional script is that it can be adapted to use other orthogonal ms or separation techniques. For instance instead of RT matching you could use CCS values from ion mobility. 
 
 ## Note on Database Structure:
 
